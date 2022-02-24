@@ -18,7 +18,6 @@ public class User {
     @Column
     private String email;
 
-
     public User() {
     }
 
@@ -60,10 +59,9 @@ public class User {
         this.email = email;
     }
 
-
     @Override
     public String toString(){
-        return String.format("%d, %s %s, email - %s", id, firstName, lastName, email);
-    }
 
+        return String.format("id - %d, %s %s, email - %s", id, firstName, lastName, email);
+    }
 }
