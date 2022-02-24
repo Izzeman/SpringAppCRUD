@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column
     private String firstName;
@@ -16,26 +16,23 @@ public class User {
     private String lastName;
 
     @Column
-    private String position;
+    private String email;
 
-    @Column
-    private int salary;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String position, int salary) {
+    public User(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.position = position;
-        this.salary = salary;
+        this.email = email;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,25 +52,18 @@ public class User {
         this.lastName = secondName;
     }
 
-    public String getPosition() {
-        return position;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
 
     @Override
     public String toString(){
-        return "Id-%d, %s %s %s, salary = %d $".formatted(id, position, firstName, lastName, salary);
+        return String.format("%d, %s %s, email - %s", id, firstName, lastName, email);
     }
 
 }

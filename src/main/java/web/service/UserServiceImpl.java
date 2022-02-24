@@ -8,10 +8,11 @@ import web.repository.UserRepository;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
-@Transactional
+//@Transactional
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional()
     public boolean createUser(User user) {
         try {
             userRepository.save(user);
@@ -37,19 +39,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> readUser() {
+    @Transactional
+    public List<User> readUsers() {
         List list = new ArrayList();
         userRepository.findAll().forEach(e -> list.add(e));
         return list;
     }
 
     @Override
+    @Transactional
+    public User readUser(Long id) {
+        User user = userRepository.findById(id).get();
+        return user;
+    }
+
+    @Override
+    @Transactional
     public User updateUser(long id) {
         User user = userRepository.findById(id).get();
         return user;
     }
 
     @Override
+    @Transactional
     public boolean deleteUser(long id) {
         try {
             userRepository.deleteById(id);
